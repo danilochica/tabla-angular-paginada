@@ -1,0 +1,51 @@
+<section id="libros">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="card border-secondary mb-3">
+          <div class="card-header">Clientes</div>
+          <div class="card-body text-secondary">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">UserId</th>
+                  <th scope="col">Tittle</th>
+                  <th scope="col">Completed ?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let libro of listaLibros  | paginate: { itemsPerPage: 10, currentPage: p }">
+                  <td>{{libro.id}}</td>
+                  <td>{{libro.userId}}</td>
+                  <td>{{libro.title}}</td>
+                  <td>{{libro.completed}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </div>
+        </div>
+      </div>
+      <!--Tarjetas laterales de información-->
+      <div class="col-md-3">
+        <div class="card text-center bg-success text-white mb-3">
+          <div class="card-body">
+            <h3>Libros completados</h3>
+            <h4 class="display-4">
+              {{getCantidadLibrosCompletados()}}
+            </h4>
+          </div>
+        </div>
+        <div class="card text-center bg-primary text-white mb-3">
+          <div class="card-body">
+            <h3>Libros pendientes</h3>
+            <h4 class="display-4">
+              {{getCantidadLibrosPendientes()}}
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
